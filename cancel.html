@@ -1,0 +1,81 @@
+<!---
+HTML page with error
+but uses javascript to detect language and only show the language
+defaults en
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
+  <style>
+
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      color: #3B3B3B;
+    }
+    .dialog-box {
+      text-align: center;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px 0;
+      min-width: 300px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    h1 {
+      font-size: 46px;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 36px;
+      font-weight: normal;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="dialog-box" data-lang="en">
+    <h1>Payment Failed</h1>
+    <div>
+      <svg aria-hidden="true" width="64" height="64" viewBox="0 0 16 16" fill="red" xmlns="http://www.w3.org/2000/svg" class="⚙   as120 as121 as122 as1v as123 as13m as13n ⚙vwl9lm"><path d="M5.53 4.47a.75.75 0 0 0-1.06 1.06L6.94 8l-2.47 2.47a.75.75 0 1 0 1.06 1.06L8 9.06l2.47 2.47a.75.75 0 1 0 1.06-1.06L9.06 8l2.47-2.47a.75.75 0 0 0-1.06-1.06L8 6.94 5.53 4.47Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8c4.43 0 8 3.581 8 8Zm-1.5 0A6.5 6.5 0 0 1 8 14.5 6.5 6.5 0 0 1 1.5 8 6.5 6.5 0 0 1 8 1.5c3.6 0 6.5 2.908 6.5 6.5Z"></path></svg>
+    <h3>We are sorry, there was an error processing your payment. <br>Please try again with a different payment method.</h3>
+  </div>
+
+  <div class="dialog-box hidden" data-lang="de">
+    <h1>Bezahlung Fehlgeschlagen</h1>
+    <div>
+      <svg aria-hidden="true" width="64" height="64" viewBox="0 0 16 16" fill="red" xmlns="http://www.w3.org/2000/svg" class="⚙   as120 as121 as122 as1v as123 as13m as13n ⚙vwl9lm"><path d="M5.53 4.47a.75.75 0 0 0-1.06 1.06L6.94 8l-2.47 2.47a.75.75 0 1 0 1.06 1.06L8 9.06l2.47 2.47a.75.75 0 1 0 1.06-1.06L9.06 8l2.47-2.47a.75.75 0 0 0-1.06-1.06L8 6.94 5.53 4.47Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8c4.43 0 8 3.581 8 8Zm-1.5 0A6.5 6.5 0 0 1 8 14.5 6.5 6.5 0 0 1 1.5 8 6.5 6.5 0 0 1 8 1.5c3.6 0 6.5 2.908 6.5 6.5Z"></path></svg>
+    </div>
+    <h3>Es tut uns leid, bei der Verarbeitung Ihrer Zahlung ist ein Fehler aufgetreten. <br>Bitte versuchen Sie es erneut mit einer anderen Zahlungsmethode.</h3>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let userLang = navigator.language || navigator.userLanguage
+      if (userLang.length > 2) {
+        userLang = userLang.substring(0, 2)
+      }
+      if (userLang === 'en') {
+        return
+      }
+      let langDiv = document.querySelector('div[data-lang="' + userLang + '"]')
+      if (langDiv) {
+        document.querySelector('div[data-lang="en"]').classList.add('hidden')
+        langDiv.classList.remove('hidden')
+      } else {
+        // do nothing and keep default visible
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!---
+HTML page with success
+but uses javascript to detect language and only show the language
+defaults en
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank you</title>
+  <style>
+
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      color: #3B3B3B;
+    }
+    .dialog-box {
+      text-align: center;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin: 20px 0;
+      width: 300px;
+    }
+    .hidden {
+      display: none !important;
+    }
+    h1 {
+      font-size: 46px;
+      font-weight: bold;
+    }
+    h2 {
+      font-size: 36px;
+      font-weight: normal;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="dialog-box" data-lang="en">
+    <h1>Thank you</h1>
+    <div>
+      <svg aria-hidden="true" width="64" height="64" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg" class="⚙   as120 as121 as122 as1v as123 as13m as13n ⚙vwl9lm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.28 5.22a.75.75 0 0 1 0 1.06l-4.75 4.75a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 0 1 1.06-1.06L7 9.44l4.22-4.22a.75.75 0 0 1 1.06 0Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 14.5A6.5 6.5 0 0 0 14.5 8c0-3.592-2.9-6.5-6.5-6.5A6.5 6.5 0 0 0 1.5 8 6.5 6.5 0 0 0 8 14.5ZM8 16a8 8 0 0 0 8-8c0-4.419-3.57-8-8-8a8 8 0 0 0-8 8 8 8 0 0 0 8 8Z"></path></svg>
+    </div>
+    <h3>Successful payment</h3>
+  </div>
+
+  <div class="dialog-box hidden" data-lang="de">
+    <h1>Vielen Dank</h1>
+    <div>
+      <svg aria-hidden="true" width="64" height="64" viewBox="0 0 16 16" fill="green" xmlns="http://www.w3.org/2000/svg" class="⚙   as120 as121 as122 as1v as123 as13m as13n ⚙vwl9lm"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.28 5.22a.75.75 0 0 1 0 1.06l-4.75 4.75a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 0 1 1.06-1.06L7 9.44l4.22-4.22a.75.75 0 0 1 1.06 0Z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8 14.5A6.5 6.5 0 0 0 14.5 8c0-3.592-2.9-6.5-6.5-6.5A6.5 6.5 0 0 0 1.5 8 6.5 6.5 0 0 0 8 14.5ZM8 16a8 8 0 0 0 8-8c0-4.419-3.57-8-8-8a8 8 0 0 0-8 8 8 8 0 0 0 8 8Z"></path></svg>
+    </div>
+    <h3>Bezahlung erfolgreich</h3>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let userLang = navigator.language || navigator.userLanguage
+      if (userLang.length > 2) {
+        userLang = userLang.substring(0, 2)
+      }
+      if (userLang === 'en') {
+        return
+      }
+      let langDiv = document.querySelector('div[data-lang="' + userLang + '"]')
+      if (langDiv) {
+        document.querySelector('div[data-lang="en"]').classList.add('hidden')
+        langDiv.classList.remove('hidden')
+      } else {
+        // do nothing and keep default visible
+      }
+    })
+  </script>
+</body>
+</html>
